@@ -1,0 +1,36 @@
+<mat-toolbar color="primary">
+    <mat-toolbar-row fxLayout="row">
+        <span class="title-center"> Login</span>
+
+    </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-dialog-content class="mat-typography">
+        <form [formGroup]="loginFrom">
+            <div fxFlex fxLayout="column">
+                <mat-form-field appearance="fill">
+                    <mat-label>Email </mat-label>
+                    <input matInput formControlName="email" required />
+                    <mat-error *ngIf="loginFrom.controls.email.touched && loginFrom.controls.email.invalid">
+                        <span *ngIf="loginFrom.controls.email.required"> This field is mandetory</span>
+                        <span *ngIf="loginFrom.controls.email.invalid">This field is Invalid </span>
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="fill">
+                    <mat-label>Password </mat-label>
+                    <input matInput formControlName="password" required type="password" />
+                    <mat-error *ngIf="loginFrom.controls.password.touched && loginFrom.controls.password.invalid">
+                        <span *ngIf="loginFrom.controls.password.required"> This field is mandetory</span>
+                        <span *ngIf="loginFrom.controls.password.invalid">This field is Invalid </span>
+                    </mat-error>
+                </mat-form-field>
+
+            </div>
+        </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="center" >
+    <button mat-raised-button color="primary" type="submit" (click)="handleSubmit()" [disabled]="!(loginFrom.valid && loginFrom.dirty)"> Login</button>
+    <button mat-raised-button color="primary" mat-dialog-close >Close</button>
+</mat-dialog-actions>
